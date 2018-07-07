@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.432" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tPotencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="9 W"
@@ -67,10 +67,10 @@
         android:text="TENSAO RECEBIDA:"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintBottom_toTopOf="@+id/tTensao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/tPotencia" />
 
     <TextView
         android:id="@+id/textView8"
@@ -85,13 +85,13 @@
         android:text="CORRENTE RECEBIDA:"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
+        app:layout_constraintBottom_toTopOf="@+id/tCorrente"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/tTensao" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tTensao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="9dp"
@@ -109,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tCorrente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"

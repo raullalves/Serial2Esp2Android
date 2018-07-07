@@ -1,8 +1,10 @@
 package com.example.tudonosso.esp;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -12,11 +14,21 @@ public class MainActivity extends AppCompatActivity
     private String broadcastMessage = "newclient";
     private String leaveMessage = "leaving";
     private boolean isEspConnected = false;
-
+    private TextView corrente;
+    private TextView tensao;
+    private TextView potencia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        updateUIComponents();
+    }
+
+    private void updateUIComponents()
+    {
+        corrente = (TextView)findViewById(R.id.tCorrente);
+        tensao = (TextView)findViewById(R.id.tTensao);
+        potencia = (TextView)findViewById(R.id.tPotencia);
     }
 
     @Override
@@ -84,6 +96,24 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+    private void updateUI(final TextView t, final String s)
+    {
+        runOnUiThread(new Runnable() {
+            public void run() {
+                t.setText(s);
+            }
+        });
+    }
+
+
+    private void parseAndUpdateUI(String s)
+    {
+        String[] sp = s.split(";");
+        updateUI(potencia, sp[0]+" W");
+        updateUI(tensao, sp[1]+" V");
+        updateUI(corrente, sp[2]+" A");
+
+    }
 
     private class ThreadSendAndReceive implements Runnable
     {
@@ -96,6 +126,7 @@ public class MainActivity extends AppCompatActivity
                 try{
                     myUdpSocket.send("send me something");
                     String s = myUdpSocket.receive(false);
+                    parseAndUpdateUI(s);
                     Log.d("socket", "Received "+s);
                     Thread.sleep(1000);
                 }catch (Exception e)
@@ -105,5 +136,6 @@ public class MainActivity extends AppCompatActivity
             }
 
         }
+
     }
 }
